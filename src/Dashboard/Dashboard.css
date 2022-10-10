@@ -1,5 +1,10 @@
-.grid-header-text {
+.page-text {
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
     width: 90%;
-    text-align: left;
     padding: 27px;
+}
+.text-align-left {
+    text-align: left;
 }

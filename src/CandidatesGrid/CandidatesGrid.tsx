@@ -38,8 +38,8 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
         setFilterBy({ ...objectToUpdate })
     };
 
-    const filterHeader = () => {
-        return (
+    const filterHeader = () =>
+        (
             <thead>
             <tr>
                 {Object.values(columns).map((column) => {
@@ -57,9 +57,8 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
             </tr>
             </thead>
         );
-    };
 
-    const tableBody = () =>
+    const tableBody = React.useMemo(() =>
         candidatesDetails.map((candidatesDetail) => {
             return (
                 <tr key={candidatesDetail.name}>
@@ -72,7 +71,9 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
                     <td className={columns.status.widthRatio === 2 ? 'large-column' : 'small-column'}>{columns.status.getDisplayValue(candidatesDetail)}</td>
                 </tr>
             );
-        });
+        })
+    , [candidatesDetails])
+
 
     const tableHeader = () =>
         <thead>
@@ -95,16 +96,16 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
 
     return (
         <section className="grid-container">
-            <div className='grid-header-text'>Applications</div>
+            <div className='page-text text-align-left'>Applications</div>
             <table className='table-container'>
                 {tableHeader()}
                 {filterHeader()}
                 {candidatesDetails.length > 0 && (
-                    <tbody className='table-body'>{tableBody()}</tbody>
+                    <tbody className='table-body'>{tableBody}</tbody>
                 )}
             </table>
             {candidatesDetails.length === 0 && !loading && !error &&
-                (<div>No records present</div>)
+                (<div className='page-text'>No records present. Please change search criteria.</div>)
             }
         </section>
     );
