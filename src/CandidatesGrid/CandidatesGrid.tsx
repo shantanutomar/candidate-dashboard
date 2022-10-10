@@ -49,6 +49,8 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
                     if (column.isFilterable) {
                         return (
                             <th key={column.code} className={column.widthRatio === 2 ? 'large-column' : 'small-column'}>
+                                {/* FUTURE IMPROVEMENTS: The input can be turned into a separate Custom textBox which then can be used across whole
+                                 application */}
                                 <input className='search-input' placeholder={`Filter by ${column.label}`} type={column.type}
                                        onChange={onSearchInputChange} name={column.code} value={filterBy[column.code] || ''} autoComplete="off"></input>
                             </th>
@@ -85,6 +87,7 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
                 if(column.isSortable) {
                     return (
                         <th key={column.code} className={column.widthRatio === 2 ? 'large-column' : 'small-column'}>
+                            {/* FUTURE IMPROVEMENTS: The sort button could have been better styled which shows the user that sorting is in which order */}
                             <button className="sort-by" onClick={() => onSortButtonClick(column.code, "asc")}>
                                 {column.label}
                             </button>
