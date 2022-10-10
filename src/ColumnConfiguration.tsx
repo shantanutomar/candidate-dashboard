@@ -8,7 +8,7 @@ export function getAllColumnsConfig(): IEachCDColumnItem {
             cellKey: 'name',
             type: 'text',
             label: 'Name',
-            isSortable: true,
+            isSortable: false,
             isShowing: true,
             isFilterable: true,
             widthRatio: 2,
@@ -23,7 +23,7 @@ export function getAllColumnsConfig(): IEachCDColumnItem {
             label: 'Email',
             isSortable: false,
             isShowing: true,
-            isFilterable: true,
+            isFilterable: false,
             widthRatio: 2,
             getDisplayValue: (dataObject) => {
                 return dataObject.email || ''
@@ -60,7 +60,7 @@ export function getAllColumnsConfig(): IEachCDColumnItem {
             cellKey: 'position_applied',
             type: 'text',
             label: 'Position applied',
-            isSortable: false,
+            isSortable: true,
             isShowing: true,
             isFilterable: true,
             widthRatio: 1,
