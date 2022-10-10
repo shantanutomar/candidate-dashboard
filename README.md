@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Candidates Dashboard for HRMS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Background
+Simple dashboard displaying list of potential candidates fit for hiring process, which allows sorting and searching of 
+candidates information.
 
-## Available Scripts
+## Below fields are displayed
 
-In the project directory, you can run:
+Name (string)
 
-### `npm start`
+Email (string)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Age (string - birthday)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Years of experience (number)
 
-### `npm test`
+Position applied (string)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Date of application (string)
 
-### `npm run build`
+Status of the application (string: approved | rejected |waiting)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Sortable fields
+Position applied (string)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Years of experience (number)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Date of application (string)
 
-### `npm run eject`
+## Searchable fields
+Name (string)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Status of the application (string: approved | rejected |waiting)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Position applied (string)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Key points
+- Typescript has been used with React, to make the application strictly types and less error prone. Props and state values can be checked for type and errors can be found at early stages.
+- No UI library has been used and code is written mainly using plain HTML. As future enhancements 
+CSS in JS can be be used for styling purpose which is very well supported by Material UI or any other UI library.
+- The app can be enhanced even further and the candidates for the same are part of code as comments. Searching **FUTURE IMPROVEMENTS:** in the repo will list down places where enhancements can be done in future.
+- The web page is hosted @https://candidates-dashboard.netlify.app/
+- Redux has not been used in the app. Given the amount of data does not cater the need to use Redux. Redux might have been a good choice 
+during the overall application development where sharing of state across components is required.
+- The app is best optimized for Desktop View, as a future enhancement UI can be developed for Mobile as well.
+- The test cases written are very basic and more will be added in future.
+- Below is the lighthouse report.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="https://i.ibb.co/W0Wm8d4/Screenshot-2022-10-10-at-6-36-04-PM.png" alt="Screenshot-2022-10-10-at-6-36-04-PM" border="0"> 
 
-## Learn More
+## Setting up and running locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Clone the  [repository](https://github.com/shantanutomar/candidate-dashboard.git).
+- Run `npm install` in the root directory.
+- Run `npm start`.
+- Hit the URL - http://localhost:3000

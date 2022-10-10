@@ -1,7 +1,9 @@
 import {capitalizeFirstLetter, getAge} from "./utils";
 import {IEachCDColumnItem} from "../types/CandidateDetailsInterface";
 
-/* The main configuration file for different fields that needs to be displayed in dashboard */
+/* The main configuration file for different fields that needs to be displayed in dashboard.
+* Using this configuration the dashboard can be customized to a great extent. */
+
 /* FUTURE IMPROVEMENTS: We can have more properties that can be leveraged in the application.
 * isShowing is not currently used and can be used in future to hide the fields altogether
 * Logic in getDisplayValue can be enhanced to show the display value as per requirement */
