@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CandidatesGrid from "../CandidatesGrid/CandidatesGrid";
 import {filterCandidates, sortCandidates, useQueryStringState} from "../utils";
 import './Dashboard.css'
 import Loader from "../Loader/Loader";
@@ -70,7 +71,17 @@ const Dashboard: React.FC = () => {
   return (
       <section>
         {!loading && !error && (
-          <div>Candidates</div>
+            <>
+              <CandidatesGrid
+                  candidatesDetails={candidatesDetails}
+                  setSortBy={setSortBy}
+                  setSortDirection={changeSortDirection}
+                  setFilterBy={setFilterBy}
+                  filterBy={filterBy}
+                  loading={loading}
+                  error={error}
+              />
+            </>
         )}
         {loading ? <Loader/> : null}
         {error ? <Error /> : null}
