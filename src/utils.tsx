@@ -7,6 +7,7 @@ const setQueryParamsInUrl = (queryString: string) => {
   window.history.pushState({ path: newUrl }, "", newUrl);
 };
 
+/* Utility function to get values from querystring */
 const getValuesFromQueryString = (
     key: string,
     queryString = window.location.search
@@ -23,6 +24,7 @@ const getValuesFromQueryString = (
   return values[key];
 };
 
+/* Utility function to set values in URL query params */
 const setValuesInQueryString = (
     key: string,
     value: string | {[key in TColumnCode]: any},
@@ -49,6 +51,7 @@ const setValuesInQueryString = (
   }
 };
 
+/* Custom hook to manipulate the sorting and searching states */
 export const useQueryStringState = (key: string, initialValue: string | {[key in TColumnCode]: any}) => {
   const [currentValue, setValue] = useState(
       getValuesFromQueryString(key) || initialValue
@@ -65,6 +68,7 @@ export const useQueryStringState = (key: string, initialValue: string | {[key in
   return [currentValue, setNewValue];
 };
 
+/* Utility function to search a set of data */
 export const filterCandidates = (dataToFilter: CandidateDetails[], filterBy: {[key in TColumnCode]: any}) => {
   const filteredData: CandidateDetails[] = dataToFilter.filter((candidate) => {
     for (let key in filterBy) {
@@ -79,6 +83,7 @@ export const filterCandidates = (dataToFilter: CandidateDetails[], filterBy: {[k
   return [...filteredData]
 };
 
+/* Utility function to sort a set of data */
 export const sortCandidates = (dataToSort: CandidateDetails[], sortBy: TColumnCode, sortDirection: string) => {
   dataToSort.sort((a, b) => {
     if (typeof a?.[sortBy] === "number") {
@@ -104,6 +109,7 @@ export const sortCandidates = (dataToSort: CandidateDetails[], sortBy: TColumnCo
   return [...dataToSort];
 };
 
+/* Utility function to get Age from a date string */
 export const getAge = (dateString: string) => {
   const today = new Date();
   const birthDate = new Date(dateString);
@@ -115,6 +121,7 @@ export const getAge = (dateString: string) => {
   return age;
 }
 
+/* Utility function to Capitalize first letter of a string */
 export const capitalizeFirstLetter = (input: string) => {
   return input.charAt(0).toUpperCase() + input.slice(1);
 }

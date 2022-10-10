@@ -1,6 +1,10 @@
 import {capitalizeFirstLetter, getAge} from "./utils";
 import {IEachCDColumnItem} from "../types/CandidateDetailsInterface";
 
+/* The main configuration file for different fields that needs to be displayed in dashboard */
+/* FUTURE IMPROVEMENTS: We can have more properties that can be leveraged in the application.
+* isShowing is not currently used and can be used in future to hide the fields altogether
+* Logic in getDisplayValue can be enhanced to show the display value as per requirement */
 export function getAllColumnsConfig(): IEachCDColumnItem {
     return {
         name: {

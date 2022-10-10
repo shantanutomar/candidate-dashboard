@@ -1,6 +1,7 @@
 import React from "react";
 import './Error.css'
 
+/* FUTURE IMPROVEMENTS: The error component is very simple and can be customized */
 const Error: React.FC = () => {
     return (
         <section className='error-container'>

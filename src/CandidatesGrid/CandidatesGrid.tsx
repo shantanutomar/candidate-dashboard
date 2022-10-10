@@ -13,6 +13,7 @@ type CandidatesGridProps = {
     error: boolean;
 };
 
+/* The grid component responsible for displaying the list of candidates   */
 const CandidatesGrid: React.FC<CandidatesGridProps> = ({
                                                            candidatesDetails,
                                                            setSortBy,
@@ -38,6 +39,8 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
         setFilterBy({ ...objectToUpdate })
     };
 
+    /* FUTURE IMPROVEMENTS: Below 3 functional components filterHeader, tableBody and tableHeader
+    can be moved to a separate file and more functionality can be introduced as per requirement */
     const filterHeader = () =>
         (
             <thead>
@@ -72,7 +75,7 @@ const CandidatesGrid: React.FC<CandidatesGridProps> = ({
                 </tr>
             );
         })
-    , [candidatesDetails])
+    , [candidatesDetails, columns])
 
 
     const tableHeader = () =>

@@ -6,10 +6,14 @@ import Loader from "../Loader/Loader";
 import Error from "../Error/Error"
 import {CandidateDetails, TColumnCode} from "../../types/CandidateDetailsInterface";
 
+/* The Dashboard component responsible for managing the state and rendering the candidates list */
 const Dashboard: React.FC = () => {
   const [candidatesDetails, setCandidatesDetails] = React.useState<CandidateDetails[]>([]);
   const [origCandidatesDetails, setOrigCandidatesDetails] =
       React.useState<CandidateDetails[]>([]);
+  /* FUTURE IMPROVEMENTS: The API fetching states can be moved to a custom hook with params like
+  * API to call and it will return loading and error states. Will be helpful in case of multiple API calls
+  * in a project */
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [sortBy, setSortBy] = useQueryStringState("sortBy", "name");
