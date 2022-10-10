@@ -1,0 +1,10 @@
+.error-container {
+    margin-top: 30vh;
+    /*background-color: #F45D31;*/
+}
+.error-text {
+    color: #F52223;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+}

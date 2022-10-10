@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
-import { useQueryStringState} from "../utils";
+import {filterCandidates, sortCandidates, useQueryStringState} from "../utils";
 import './Dashboard.css'
+import Loader from "../Loader/Loader";
+import Error from "../Error/Error"
 import {CandidateDetails, TColumnCode} from "../../types/CandidateDetailsInterface";
 
 const Dashboard: React.FC = () => {
   const [candidatesDetails, setCandidatesDetails] = React.useState<CandidateDetails[]>([]);
   const [origCandidatesDetails, setOrigCandidatesDetails] =
-    React.useState<CandidateDetails[]>([]);
+      React.useState<CandidateDetails[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
   const [sortBy, setSortBy] = useQueryStringState("sortBy", "name");
   const [sortDirection, setSortDirection] = useQueryStringState(
-    "sortDirection",
-    "asc"
+      "sortDirection",
+      "asc"
   );
   const [filterBy, setFilterBy] = useQueryStringState("filterBy", {} as string | {[key in TColumnCode]: any});
 
@@ -35,16 +37,44 @@ const Dashboard: React.FC = () => {
     fetchCandidateDetails();
   }, []);
 
+  useEffect(() => {
+    if(!loading) {
+      let filteredData: CandidateDetails[] = []
+      let sortedData: CandidateDetails[] = []
+      if(Object.keys(filterBy).length > 0) {
+        filteredData = filterCandidates([...origCandidatesDetails], filterBy);
+        sortedData = sortCandidates([...filteredData], sortBy, sortDirection);
+      } else {
+        sortedData = sortCandidates([...origCandidatesDetails], sortBy, sortDirection)
+      }
+      setCandidatesDetails([...sortedData])
+    }
+  }, [filterBy, loading]);
+
+  useEffect(() => {
+    if (sortBy !== "" && candidatesDetails.length > 0) {
+      const sortedData: CandidateDetails[] = sortCandidates([...candidatesDetails], sortBy, sortDirection);
+      setCandidatesDetails([...sortedData]);
+    }
+  }, [sortBy, sortDirection]);
+
+
+  const changeSortDirection = () => {
+    if(sortDirection === 'asc') {
+      setSortDirection('dsc')
+    } else {
+      setSortDirection('asc')
+    }
+  }
+
   return (
-    <section>
-      {!loading && !error && (
-          <>
-            'Candidates Data'
-          </>
-      )}
-      {loading ? 'Loading' : null}
-      {error ? 'Error' : null}
-    </section>
+      <section>
+        {!loading && !error && (
+          <div>Candidates</div>
+        )}
+        {loading ? <Loader/> : null}
+        {error ? <Error /> : null}
+      </section>
   );
 };
 

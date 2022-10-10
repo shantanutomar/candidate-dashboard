@@ -8,8 +8,8 @@ const setQueryParamsInUrl = (queryString: string) => {
 };
 
 const getValuesFromQueryString = (
-  key: string,
-  queryString = window.location.search
+    key: string,
+    queryString = window.location.search
 ) => {
   const values: any = qs.parse(queryString);
   if (key === "filterBy" && values[key]) {
@@ -51,18 +51,57 @@ const setValuesInQueryString = (
 
 export const useQueryStringState = (key: string, initialValue: string | {[key in TColumnCode]: any}) => {
   const [currentValue, setValue] = useState(
-    getValuesFromQueryString(key) || initialValue
+      getValuesFromQueryString(key) || initialValue
   );
   setValuesInQueryString(key, currentValue);
   const setNewValue = useCallback(
       (newValue: string | {[key in TColumnCode]: any}) => {
-      setValue(newValue);
-      setValuesInQueryString(key, newValue);
-    },
-    [key]
+        setValue(newValue);
+        setValuesInQueryString(key, newValue);
+      },
+      [key]
   );
 
   return [currentValue, setNewValue];
+};
+
+export const filterCandidates = (dataToFilter: CandidateDetails[], filterBy: {[key in TColumnCode]: any}) => {
+  const filteredData: CandidateDetails[] = dataToFilter.filter((candidate) => {
+    for (let key in filterBy) {
+      // @ts-ignore
+      if(!candidate[key] || !candidate[key].toLowerCase().includes(filterBy[key].toLowerCase())) {
+        return false
+      }
+    }
+    return true;
+  });
+
+  return [...filteredData]
+};
+
+export const sortCandidates = (dataToSort: CandidateDetails[], sortBy: TColumnCode, sortDirection: string) => {
+  dataToSort.sort((a, b) => {
+    if (typeof a?.[sortBy] === "number") {
+      if (sortDirection === "asc") {
+        // @ts-ignore
+        return a?.[sortBy] - b?.[sortBy];
+      } else {
+        // @ts-ignore
+        return b?.[sortBy] - a?.[sortBy];
+      }
+    } else {
+      if (sortDirection === "asc") {
+        // @ts-ignore
+        return a?.[sortBy]?.localeCompare(b?.[sortBy]);
+      } else {
+        // @ts-ignore
+        return b?.[sortBy]?.localeCompare(a?.[sortBy]);
+      }
+    }
+
+  });
+
+  return [...dataToSort];
 };
 
 export const getAge = (dateString: string) => {
